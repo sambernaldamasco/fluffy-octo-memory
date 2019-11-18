@@ -8,20 +8,52 @@ app.controller('MainController', ['$http', function($http) {
       url: '/posts'
     }).then((response) => {
       console.log(response);
-      this.posts = response.data;
+      this.posts = response.data.reverse();
     }, (err) => {
       console.log(err);
     })
   }
-  this.getPosts();
+
   //create post
+  this.createPosts = () => {
+    $http({
+      method: 'POST',
+      url: '/posts',
+      data: {
+        author: this.author,
+        title: this.title,
+        description: this.description
+      }
+    }).then((response) => {
+      console.log(response);
+      this.posts = response.data;
+      this.getPosts();
+    }, (err) => {
+      console.log(err);
+    })
+  }
+
 
   ///edit post
 
   //delete post
+  this.deletePosts = (id)=>{
+      $http({
+          method:'DELETE',
+          url: '/posts/' + id
+      }).then(
+          (response) => {
+            console.log(response);
+            this.getPosts();
+          },
+          (err) => {
+            console.log(err);
+          }
+      );
+  }
 
 
 
-
+  this.getPosts();
 
 }]);

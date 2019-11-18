@@ -7,11 +7,19 @@
        <script src="/js/app.js" charset="utf-8"></script>
   </head>
   <body  ng-controller="MainController as ctrl">
+    <form ng-submit="ctrl.createPosts()">
+         <input type="text" ng-model="ctrl.author" placeholder="author's name">
+         <input type="text" ng-model="ctrl.title" placeholder="title">
+         <textarea ng-model="ctrl.description"></textarea>
+         <input type="submit" value="Add New Post">
+    </form>
 <ul ng-repeat="post in ctrl.posts">
   <li>{{post.author}}</li>
   <li>{{post.title}}</li>
   <li>{{post.description}}</li>
+  <button ng-click="ctrl.deletePosts(post._id)"> delete this</button>
 </ul>
+
 
   </body>
 </html>
