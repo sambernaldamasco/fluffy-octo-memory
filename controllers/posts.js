@@ -34,3 +34,8 @@ router.put('/:id', (req, res) => {
   })
 })
 module.exports = router
+
+
+
+// ====== CURL testing
+//curl -X POST -H "Content-Type: application/json" -d '{ "author":"sam","title":"test", "description":"testing" }' http://localhost:3000/posts
