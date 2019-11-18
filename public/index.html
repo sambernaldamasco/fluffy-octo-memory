@@ -1,25 +1,38 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr" ng-app="BlogApp">
-  <head>
-    <meta charset="utf-8">
-    <title>Blogs</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular.min.js" charset="utf-8"> </script>
-       <script src="/js/app.js" charset="utf-8"></script>
-  </head>
-  <body  ng-controller="MainController as ctrl">
-    <form ng-submit="ctrl.createPosts()">
-         <input type="text" ng-model="ctrl.author" placeholder="author's name">
-         <input type="text" ng-model="ctrl.title" placeholder="title">
-         <textarea ng-model="ctrl.description"></textarea>
-         <input type="submit" value="Add New Post">
-    </form>
-<ul ng-repeat="post in ctrl.posts">
-  <li>{{post.author}}</li>
-  <li>{{post.title}}</li>
-  <li>{{post.description}}</li>
-  <button ng-click="ctrl.deletePosts(post._id)"> delete this</button>
-</ul>
+
+<head>
+  <meta charset="utf-8">
+  <title>Blogs</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular.min.js" charset="utf-8"> </script>
+  <script src="/js/app.js" charset="utf-8"></script>
+</head>
+
+<body ng-controller="MainController as ctrl">
+  <form ng-submit="ctrl.createPosts()">
+    <input type="text" ng-model="ctrl.author" placeholder="author's name">
+    <input type="text" ng-model="ctrl.title" placeholder="title">
+    <textarea ng-model="ctrl.description"></textarea>
+    <input type="submit" value="Add New Post">
+  </form>
+  <ul ng-repeat="post in ctrl.posts">
+    <li>{{post.author}}</li>
+    <li>{{post.title}}</li>
+    <li>{{post.description}}</li>
+    <li> <a ng-click="ctrl.indexOfEditForm = $index" ng-if="$index !== ctrl.indexOfEditForm">
+        edit
+      </a></li>
+    <button ng-click="ctrl.deletePosts(post._id)"> delete this</button>
+    <form ng-if="$index === ctrl.indexOfEditForm"
+     ng-submit="ctrl.editPosts(post)">
+       <input type="text" ng-model="ctrl.updatedTitle">
+       <textarea ng-model="ctrl.updatedDescription">{{ctrl.description}}</textarea>
+       <input type="submit" value="Edit this Post">
+   </form>
+  </ul>
 
 
-  </body>
+
+</body>
+
 </html>
