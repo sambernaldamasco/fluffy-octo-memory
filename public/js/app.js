@@ -2,6 +2,9 @@
 const app = angular.module('BlogApp', []);
 app.controller('MainController', ['$http', function($http) {
   this.indexOfEditForm = null;
+  this.createNewPost = false;
+
+
   //index post
   this.getPosts = () => {
     $http({
@@ -28,6 +31,7 @@ app.controller('MainController', ['$http', function($http) {
     }).then((response) => {
       console.log(response);
       this.posts = response.data;
+      this.createNewPost = false
       this.getPosts();
     }, (err) => {
       console.log(err);
