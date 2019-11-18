@@ -28,6 +28,9 @@ app.controller('MainController', ['$http', function($http) {
     }).then((response) => {
       console.log(response);
       this.posts = response.data;
+      this.author = ''
+      this.title = ''
+      this.description = ''
       this.getPosts();
     }, (err) => {
       console.log(err);
@@ -60,7 +63,7 @@ app.controller('MainController', ['$http', function($http) {
       method: 'PUT',
       url: '/posts/' + post._id,
       data: {
-        author: this.author,
+        author: post.author,
         title: this.updatedTitle,
         description: this.updatedDescription
       }
@@ -70,6 +73,24 @@ app.controller('MainController', ['$http', function($http) {
       this.updatedTitle = "";
       this.updatedDescription = "";
       this.indexOfEditForm = null;
+    }, (err) => {
+      console.log('error');
+    });
+  }
+
+
+  this.addLikes = (post) => {
+    post.likes++
+
+    $http({
+      method: 'PUT',
+      url: '/posts/' + post._id,
+      data: {
+        likes: post.likes
+      }
+    }).then((response) => {
+      console.log(response);
+      this.getPosts();
     }, (err) => {
       console.log('error');
     });
