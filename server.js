@@ -4,6 +4,7 @@
 const express = require("express")
 const mongoose = require("mongoose")
 const postsController = require("./controllers/posts.js")
+const moment = require('moment')
 
 // ========================
 // GLOBAL CONFIG
