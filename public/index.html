@@ -14,7 +14,8 @@
 </head>
 
 <body ng-controller="MainController as ctrl">
-
+<!-- whole body container -->
+<div class="container">
   <h2>Super Duper Blog</h2>
   <button ng-click="ctrl.createNewPost = true">Add new post</button>
 
@@ -26,14 +27,14 @@
   </form>
 
   <ul ng-repeat="post in ctrl.posts">
-    <li>{{post.author}}</li>
+
     <!-- adding conditions to toggle description on click of title -->
-    <li><a href="#" ng-click="ctrl.toggleDetails();ctrl.indexOfShowForm = $index;"> {{post.title}}</a></li>
+    <li><a href="#" ng-click="ctrl.toggleDetails();ctrl.indexOfShowForm = $index;"> {{post.title}}</a> - By {{post.author}}</li>
     <div ng-if="($index === ctrl.indexOfShowForm && ctrl.showDetails===true)">
     <li>{{post.description}}</li>
     <li>posted on: {{post.date}}</li>
     <li>likes: {{post.likes}}</li>
-  </div>
+
     <button ng-click="ctrl.addLikes(post)">like this post</button>
     <button
       ng-click="ctrl.indexOfEditForm = $index; ctrl.updatedDescription = post.description"
@@ -53,11 +54,11 @@
          <textarea ng-model="ctrl.updatedDescription"></textarea>
          <input type="submit" value="Edit this Post">
     </form>
-
+</div>
   </ul>
 
 
-
+</div>
 </body>
 
 </html>
