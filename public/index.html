@@ -27,10 +27,13 @@
 
   <ul ng-repeat="post in ctrl.posts">
     <li>{{post.author}}</li>
-    <li>{{post.title}}</li>
+    <!-- adding conditions to toggle description on click of title -->
+    <li><a href="#" ng-click="ctrl.toggleDetails();ctrl.indexOfShowForm = $index;"> {{post.title}}</a></li>
+    <div ng-if="($index === ctrl.indexOfShowForm && ctrl.showDetails===true)">
     <li>{{post.description}}</li>
     <li>posted on: {{post.date}}</li>
     <li>likes: {{post.likes}}</li>
+  </div>
     <button ng-click="ctrl.addLikes(post)">like this post</button>
     <button
       ng-click="ctrl.indexOfEditForm = $index; ctrl.updatedDescription = post.description"
