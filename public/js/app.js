@@ -28,6 +28,9 @@ app.controller('MainController', ['$http', function($http) {
     }).then((response) => {
       console.log(response);
       this.posts = response.data;
+      this.author = ''
+      this.title = ''
+      this.description = ''
       this.getPosts();
     }, (err) => {
       console.log(err);
@@ -60,7 +63,7 @@ app.controller('MainController', ['$http', function($http) {
       method: 'PUT',
       url: '/posts/' + post._id,
       data: {
-        author: this.author,
+        author: post.author,
         title: this.updatedTitle,
         description: this.updatedDescription
       }
@@ -92,7 +95,7 @@ app.controller('MainController', ['$http', function($http) {
       console.log('error');
     });
   }
-  
+
   this.getPosts();
 
 }]);
