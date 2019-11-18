@@ -10,7 +10,9 @@ const mongoose = require("mongoose")
 const postSchema = new mongoose.Schema({
   author: String,
   title: String,
-  description: String
+  description: String,
+  likes:{type: Number, default: 0},
+  date: {type: Date, default: Date.now}
 });
 
 // ========================
