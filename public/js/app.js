@@ -75,6 +75,24 @@ app.controller('MainController', ['$http', function($http) {
     });
   }
 
+
+  this.addLikes = (post) => {
+    post.likes++
+
+    $http({
+      method: 'PUT',
+      url: '/posts/' + post._id,
+      data: {
+        likes: post.likes
+      }
+    }).then((response) => {
+      console.log(response);
+      this.getPosts();
+    }, (err) => {
+      console.log('error');
+    });
+  }
+  
   this.getPosts();
 
 }]);
