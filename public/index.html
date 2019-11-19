@@ -16,46 +16,57 @@
 <body ng-controller="MainController as ctrl">
 <!-- whole body container -->
 <div class="container">
-  <h2>Super Duper Blog</h2>
-  <button ng-click="ctrl.createNewPost = true">Add new post</button>
 
-  <form ng-if="ctrl.createNewPost" ng-submit="ctrl.createPosts()">
-    <input type="text" ng-model="ctrl.author" placeholder="author's name"><br>
-    <input type="text" ng-model="ctrl.title" placeholder="title"><br>
-    <textarea ng-model="ctrl.description"></textarea><br>
-    <input type="submit" value="submit"> <button ng-click="ctrl.createNewPost = false">cancel</button>
-  </form>
+  <div class="header">
+    <h2>Super Duper Blog</h2>
+    <button ng-click="ctrl.createNewPost = true">Add new post</button>
+  </div>
 
-  <ul ng-repeat="post in ctrl.posts">
-
-    <!-- adding conditions to toggle description on click of title -->
-    <li><a href="#" ng-click="ctrl.toggleDetails();ctrl.indexOfShowForm = $index;"> {{post.title}}</a> - By {{post.author}}</li>
-    <div ng-if="($index === ctrl.indexOfShowForm && ctrl.showDetails===true)">
-    <li>{{post.description}}</li>
-    <li>posted on: {{post.date}}</li>
-    <li>likes: {{post.likes}}</li>
-
-    <button ng-click="ctrl.addLikes(post)">like this post</button>
-    <button
-      ng-click="ctrl.indexOfEditForm = $index; ctrl.updatedDescription = post.description"
-      ng-if="$index !== ctrl.indexOfEditForm">
-        edit
-    </button>
-
-    <button
-      ng-click="ctrl.deletePosts(post._id)">
-       delete this
-    </button>
-
-    <form
-      ng-if="$index === ctrl.indexOfEditForm"
-      ng-submit="ctrl.editPosts(post)">
-         <input type="text" ng-model="ctrl.updatedTitle" placeholder="new title">
-         <textarea ng-model="ctrl.updatedDescription"></textarea>
-         <input type="submit" value="Edit this Post">
+  <div class="newForm">
+    <form ng-if="ctrl.createNewPost" ng-submit="ctrl.createPosts()">
+      <input type="text" ng-model="ctrl.author" placeholder="author's name"><br>
+      <input type="text" ng-model="ctrl.title" placeholder="title"><br>
+      <textarea ng-model="ctrl.description"></textarea><br>
+      <input type="submit" value="submit"> <button ng-click="ctrl.createNewPost = false">cancel</button>
     </form>
-</div>
-  </ul>
+  </div>
+
+
+  <div class="posts">
+    <h3>Posts</h3>
+    <ul ng-repeat="post in ctrl.posts">
+      <!-- adding conditions to toggle description on click of title -->
+      <li><a href="#" ng-click="ctrl.toggleDetails();ctrl.indexOfShowForm = $index;"> {{post.title}}</a> - posted by {{post.author}}</li>
+
+      <div ng-if="($index === ctrl.indexOfShowForm && ctrl.showDetails===true)">
+        <h5>{{post.title}}</h5>
+        <p>{{post.description}}</p>
+        <li>{{post.date}}</li>
+        <li>likes: {{post.likes}}</li>
+
+        <button ng-click="ctrl.addLikes(post)">like this post</button>
+        <button
+          ng-click="ctrl.indexOfEditForm = $index; ctrl.updatedDescription = post.description"
+          ng-if="$index !== ctrl.indexOfEditForm">
+            edit
+        </button>
+
+        <button
+          ng-click="ctrl.deletePosts(post._id)">
+           delete this
+        </button>
+
+        <form
+          ng-if="$index === ctrl.indexOfEditForm"
+          ng-submit="ctrl.editPosts(post)">
+             <input type="text" ng-model="ctrl.updatedTitle" placeholder="new title">
+             <textarea ng-model="ctrl.updatedDescription"></textarea>
+             <input type="submit" value="Edit this Post">
+        </form>
+      </div>
+      
+    </ul>
+  </div>
 
 
 </div>
