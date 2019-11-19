@@ -3,6 +3,7 @@
 // ========================
 const express = require('express')
 const mongoose = require("mongoose")
+const moment = require('moment')
 
 // ========================
 // SCHEMA
@@ -12,7 +13,7 @@ const postSchema = new mongoose.Schema({
   title: String,
   description: String,
   likes:{type: Number, default: 0},
-  date: {type: Date, default: Date.now}
+  date: {type: String, default: moment().format('MMMM Do YYYY, h:mm:ss a')}
 });
 
 // ========================

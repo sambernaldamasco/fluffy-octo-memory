@@ -5,7 +5,6 @@ const express = require("express")
 const Posts = require('../models/posts.js')
 const router = express.Router()
 
-
 // ========================
 // ROUTES
 // ========================

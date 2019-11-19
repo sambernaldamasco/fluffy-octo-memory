@@ -1,3 +1,4 @@
 # fluffy-octo-memory
-Edited the clone success.
+Super Duper Blog -- a homework assignment done by:
+Sam
 Punitha
