@@ -1,7 +1,15 @@
-.container{
+.header{
 
   text-align: center;
 }
 li{
   list-style-type: none;
+}
+
+.newForm{
+  text-align: center
+}
+
+h3{
+  text-decoration: underline;
 }
