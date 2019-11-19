@@ -4,7 +4,6 @@
 const express = require("express")
 const Posts = require('../models/posts.js')
 const router = express.Router()
-const seed = require('../models/seed.js')
 
 // ========================
 // ROUTES
