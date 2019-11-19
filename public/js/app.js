@@ -2,6 +2,15 @@
 const app = angular.module('BlogApp', []);
 app.controller('MainController', ['$http', function($http) {
   this.indexOfEditForm = null;
+  this.createNewPost = false;
+
+///to toggle betwen showing and hiding details on clicking title
+this.showDetails= false;
+this.toggleDetails =() => {
+  this.showDetails=!this.showDetails;
+}
+/////////////////////////
+
   //index post
   this.getPosts = () => {
     $http({
@@ -31,6 +40,7 @@ app.controller('MainController', ['$http', function($http) {
       this.author = ''
       this.title = ''
       this.description = ''
+      this.createNewPost = false
       this.getPosts();
     }, (err) => {
       console.log(err);
