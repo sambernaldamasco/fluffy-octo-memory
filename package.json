@@ -20,7 +20,7 @@
   "homepage": "https://github.com/sambernaldamasco/fluffy-octo-memory#readme",
   "dependencies": {
     "express": "^4.17.1",
-    "moment": "^2.24.0",
+    "moment": "^2.29.2",
     "mongoose": "^5.7.11"
   }
 }
